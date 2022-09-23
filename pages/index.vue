@@ -99,7 +99,7 @@
 
     <p class="max-w-md mx-auto mt-5 text-center text-gray-500">
         Made by <a href="https://twitter.com/HeyNikhila" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">@heyNikhila</a>. <br/>
-        Help me improve this DM on twitter with your feedback & suggestions. - V0.1<br/>
+        If you found any issues/ have suggestion or find this useful please please please message me on twitter 🙏. - V0.1<br/>
     </p>
 
   </form>
