@@ -97,6 +97,25 @@
         </button>
     </h2>
 
+    <h2 class="mt-4 text-2xl font-extrabold tracking-tight leading-none text-gray-900" v-if="inspirations.length > 0">
+        ✨Inspirations:
+    </h2>
+    <p>This are related inspirations, not exact output. You can try ☝ prompts & use some of the below ones👇</p>
+
+    <div class="grid grid-cols-3 gap-4">
+        <div v-for="inspiration in inspirations" v-bind:key="inspiration.id">
+            <figure class="relative max-w-sm transition-all duration-300 cursor-pointer">
+        <!-- <a href="#"> -->
+            <img class="rounded-lg" :src="inspiration.src" alt="">
+        <!-- </a> -->
+            <figcaption class="absolute bottom-6 px-4 text-lg text-white">
+                <p>{{inspiration.prompt}}</p>
+            </figcaption>
+        </figure>
+
+        </div>
+    </div>
+
     <p class="max-w-md mx-auto mt-5 text-center text-gray-500">
         Made by <a href="https://twitter.com/HeyNikhila" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">@heyNikhila</a>. <br/>
         If you found any issues/ have suggestion or find this useful please please please message me on twitter 🙏. - V0.1<br/>
@@ -382,7 +401,7 @@ export default {
         window.getSelection().removeAllRanges();
     },
 
-    generate_prompt() {
+    async generate_prompt() {
       if (this.image_of == "") {
         alert("Enter description of image");
         return false;
@@ -441,24 +460,15 @@ export default {
         this.prompt += ", " + this.selected_colors;
       }
 
-      console.log(this.prompt);
-
 
 
         //Inspirations:
-        var url = 'https://lexica.art/api/v1/search?computer';
-
-        axios.get(url, {
-            headers: {
-                'Access-Control-Allow-Origin': '*',
-                'Access-Control-Allow-Headers': '*',
-                'Content-Type': 'application/json',
-                'withCredentials': false
-            },
-        })
+        var url = 'https://lexica.art/api/v1/search?q=' + this.prompt;
+        var self = this;
+        await axios.get(url)
             .then(function (response) {
                 // handle success
-                console.log(response);
+                self.inspirations = response.data.images;
             })
             .catch(function (error) {
                 // handle error
