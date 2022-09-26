@@ -107,6 +107,9 @@
 </template>
 
 <script>
+    const axios = require('axios');
+
+
 export default {
   name: "IndexPage",
   data() {
@@ -349,7 +352,6 @@ export default {
         "Hard Light",
         "Moody Light",
         "Dynamic Light",
-
       ],
       colors: ["colorful", "Black and white", "Greyscale"],
 
@@ -366,17 +368,18 @@ export default {
       image_of: "",
       background: "",
       prompt: "",
+      inspirations: []
     };
   },
 
   methods: {
     copy_prompt() {
         var r = document.createRange();
-r.selectNode(document.getElementById('prompt'));
-window.getSelection().removeAllRanges();
-window.getSelection().addRange(r);
-document.execCommand('copy');
-window.getSelection().removeAllRanges();
+        r.selectNode(document.getElementById('prompt'));
+        window.getSelection().removeAllRanges();
+        window.getSelection().addRange(r);
+        document.execCommand('copy');
+        window.getSelection().removeAllRanges();
     },
 
     generate_prompt() {
@@ -439,6 +442,31 @@ window.getSelection().removeAllRanges();
       }
 
       console.log(this.prompt);
+
+
+
+        //Inspirations:
+        var url = 'https://lexica.art/api/v1/search?computer';
+
+        axios.get(url, {
+            headers: {
+                'Access-Control-Allow-Origin': '*',
+                'Access-Control-Allow-Headers': '*',
+                'Content-Type': 'application/json',
+                'withCredentials': false
+            },
+        })
+            .then(function (response) {
+                // handle success
+                console.log(response);
+            })
+            .catch(function (error) {
+                // handle error
+                console.log(error);
+            })
+            .finally(function () {
+                // always executed
+            });
     },
   },
 };
