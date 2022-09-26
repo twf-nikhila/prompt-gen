@@ -326,6 +326,9 @@ export default {
         "Beautiful",
         "Very Beautiful",
         "Very Very Beautiful",
+        "Symmetrical",
+        "Macabre",
+        "at night"
       ],
       times: [
         "futuristic",
@@ -344,6 +347,9 @@ export default {
         "Backlight",
         "Soft Light",
         "Hard Light",
+        "Moody Light",
+        "Dynamic Light",
+
       ],
       colors: ["colorful", "Black and white", "Greyscale"],
 
