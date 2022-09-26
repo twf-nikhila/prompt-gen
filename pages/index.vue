@@ -100,7 +100,7 @@
     <h2 class="mt-4 text-2xl font-extrabold tracking-tight leading-none text-gray-900" v-if="inspirations.length > 0">
         ✨Inspirations:
     </h2>
-    <p>This are related inspirations, not exact output. You can try ☝ prompts & use some of the below ones👇</p>
+    <p v-if="inspirations.length > 0">This are related inspirations, not exact output. You can try ☝ prompts & use some of the below ones👇</p>
 
     <div class="grid grid-cols-3 gap-4">
         <div v-for="inspiration in inspirations" v-bind:key="inspiration.id">
